@@ -34,29 +34,9 @@
 
 <script>
 export default {
-  emits: ["delete-todo", "edit-todo"],
-  props: {
-    todo: {
-      type: Object,
-      require: true,
-    },
-  },
   data() {
     return {
-      editMode: false,
-      todoText: "todotext",
     };
-  },
-  methods: {
-    enableEdit() {
-      this.editMode = true;
-      this.todoText = this.todo.text;
-    },
-    editTodo() {
-      this.editMode = false;
-      this.$emit("edit-todo", { key: this.todo.key, text: this.todoText });
-      this.todoText = "";
-    },
   },
 };
 </script>
