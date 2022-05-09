@@ -13,21 +13,36 @@
         ></a>
       </div>
     </nav>
-    <todo></todo>
+    <todo
+      v-for="(item, index) in todos"
+      :todo="item"
+      :key="index"
+      @delete-todo="deleteTodo"
+      @edit-todo="editTodo"
+    ></todo>
   </div>
 </template>
 
 <script>
 import Todo from "./Todo.vue";
 export default {
+  emits: ["delete-todo", "edit-todo"],
   props: {
     todos: {
       type: Array,
-      required: true
+      required: true,
     },
   },
   components: {
     Todo,
+  },
+  methods: {
+    deleteTodo($event) {
+      this.$emit("delete-todo", $event);
+    },
+    editTodo($event) {
+      this.$emit("edit-todo", $event);
+    },
   },
 };
 </script>
